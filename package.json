@@ -29,9 +29,12 @@
   },
   "dependencies": {
     "@types/express-session": "^1.17.0",
+    "@types/milliseconds": "0.0.30",
     "@types/uuid": "^8.3.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "milliseconds": "^1.0.3",
+    "sqlite3": "^5.0.0",
     "uuid": "^8.3.0"
   }
 }

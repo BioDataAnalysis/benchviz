@@ -7,9 +7,27 @@
 //     session_secret: process.env.BENCHVIZ_SESSION_SECRET || "",
 // };
 
+import { ConnectionOptions } from "typeorm";
+import ms from "milliseconds";
+
 export default {
     port: 3000,
     mode: "development",
     api_url: "/api/v1",
-    session_secret: process.env.BENCHVIZ_SESSION_SECRET || "my-development-secret",
+    session: {
+        secret: process.env.BENCHVIZ_SESSION_SECRET || "my-development-secret",
+        expires: ms.months(1)
+    },
+
+    db: <ConnectionOptions>{
+        type: "sqlite",
+        database: `./db.sqlite3`,
+        username: "sqlite_username",
+        password: "sqlite_password",
+        entities: [
+            `${__dirname}/../entities/*.{ts,js}`
+        ],
+        synchronize: true,
+        logging: false,
+    }
 };
