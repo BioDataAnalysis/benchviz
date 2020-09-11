@@ -9,6 +9,10 @@ const startServer = async () => {
 
     await loaders(app);
 
+    if (!config.port || !config.mode) {
+        throw new Error("Undefined port or mode. Exiting.");
+    }
+
     app.listen(config.port, () => {
         console.log(`🦠 Server running on ${config.port}, ${config.mode} mode`);
     });
