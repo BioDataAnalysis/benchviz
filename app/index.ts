@@ -1,11 +1,17 @@
-import express, { Application } from "express"
+import "reflect-metadata"
+import express from "express";
 
-const app: Application = express();
+import loaders from "./loaders";
+import config from "./config";
 
-app.listen(3000, () => {
-    console.log("🦠 Listening on port 3000");
-});
+const startServer = async () => {
+    const app = express();
 
-app.get("/", (request, response): void => {
-    response.send("Hi!");
-});
+    await loaders(app);
+
+    app.listen(config.port, () => {
+        console.log(`🦠 Server running on ${config.port}, ${config.mode} mode`);
+    });
+};
+
+startServer();
